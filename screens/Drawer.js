@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {GoToBtn} from '../components/GoToBtn';
-import {goToScreen} from '../helpers/GoToScreen';
+import {goToScreen, goToScreenWithIndex} from '../helpers/GoToScreen';
 import AsyncStorage from "@react-native-community/async-storage";
 
 export default class Drawer extends Component {
@@ -13,18 +13,6 @@ export default class Drawer extends Component {
         };
     }
 
-    async componentDidMount(): void {
-        this.getIndexNumber();
-    }
-
-    // TODO : Function fix
-    getIndexNumber = async () => {
-        let indexNumber = await AsyncStorage.getItem('indexNumber');
-        this.setState({
-           indexNumber: indexNumber
-        });
-    };
-
     render() {
         return (
             <View style={styles.drawerContainer}>
@@ -33,7 +21,7 @@ export default class Drawer extends Component {
                        source={require('../images/logo.png')}/>
                 <View style={styles.btnContainer}>
                     <GoToBtn onPress={() => goToScreen(this, 'HomePage')} screenName={'Home page'}/>
-                    <GoToBtn onPress={() => goToScreen(this, 'Student', this.state.indexNumber)} screenName={'My results'}/>
+                    <GoToBtn onPress={() => goToScreenWithIndex(this, 'Student')} screenName={'My results'}/>
                     <GoToBtn onPress={() => goToScreen(this, 'Settings')} screenName={'Settings'}/>
                     <GoToBtn onPress={() => goToScreen(this, 'About')} screenName={'About app'}/>
                 </View>

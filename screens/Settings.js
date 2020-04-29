@@ -7,7 +7,7 @@ export default class Settings extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          indexNumber: null
+          indexNumber: '30737'
         };
 
     }
@@ -56,10 +56,13 @@ export default class Settings extends Component{
                         color: 'yellow',
                         margin: 15
                     }}
-                    placeholder={this.state.indexNumber}
-                    placeholderTextColor={'yellow'}
                     onChangeText={(text) => this.setIndex(text)}
                 />
+                <View style={{flexDirection: 'row'}}>
+                    <View style={styles.block}/>
+                    <Text style={styles.categoryTitle}>Mounted index number: <Text style={{color: 'yellow'}}>{this.state.indexNumber}</Text></Text>
+                    <View style={styles.block}/>
+                </View>
             </View>
         );
     }
